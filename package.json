@@ -1,0 +1,78 @@
+{
+	"name": "eslint-config-noamkadosh",
+	"version": "1.0.0",
+	"description": "ESLint rules according to noamkadosh' personal preference",
+	"keywords": [
+		"eslint",
+		"eslintconfig",
+		"config",
+		"noamkadosh",
+		"javascript"
+	],
+	"main": "index.js",
+	"author": "Noam Kadosh",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/noamkadosh/eslint-config-noamkadosh/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/noamkadosh/eslint-config-noamkadosh"
+	},
+	"scripts": {
+		"lint": "eslint --config index.js .",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"@rushstack/eslint-config": "^2.6.2",
+		"eslint-plugin-array-func": "^3.1.7",
+		"eslint-plugin-compat": "^4.0.2",
+		"eslint-plugin-cypress": "^2.12.1",
+		"eslint-plugin-eslint-comments": "^3.2.0",
+		"eslint-plugin-html": "^6.2.0",
+		"eslint-plugin-jest-dom": "^4.0.2",
+		"eslint-plugin-jest-formatting": "^3.1.0",
+		"eslint-plugin-jest": "^26.5.3",
+		"eslint-plugin-json": "^3.1.0",
+		"eslint-plugin-jsonc": "^2.3.0",
+		"eslint-plugin-jsx-a11y": "^6.5.1",
+		"eslint-plugin-markdown": "^2.2.1",
+		"eslint-plugin-no-constructor-bind": "^2.0.4",
+		"eslint-plugin-no-secrets": "^0.8.9",
+		"eslint-plugin-no-unsanitized": "^4.0.1",
+		"eslint-plugin-no-use-extend-native": "^0.5.0",
+		"eslint-plugin-optimize-regex": "^1.2.1",
+		"eslint-plugin-prettier": "^4.0.0",
+		"eslint-plugin-promise": "^6.0.0",
+		"eslint-plugin-react-hooks": "^4.5.0",
+		"eslint-plugin-react": "^7.30.0",
+		"eslint-plugin-security": "^1.5.0",
+		"eslint-plugin-sonarjs": "^0.13.0",
+		"eslint-plugin-switch-case": "^1.1.2",
+		"eslint-plugin-testing-library": "^5.5.1",
+		"eslint-plugin-unicorn": "^42.0.0",
+		"read-pkg-up": "^7.0.1",
+		"semver": "^7.3.7"
+	},
+	"devDependencies": {
+		"eslint": "^8.19.0",
+		"prettier": "^2.7.1",
+		"typescript": "^4.7.4"
+	},
+	"peerDependencies": {
+		"eslint": "^8.0.0",
+		"typescript": "^4.0.0"
+	},
+	"peerDependenciesMeta": {
+		"typescript": {
+			"optional": true
+		}
+	},
+	"eslintConfig": {
+		"extends": "./index.js"
+	},
+	"eslintIgnore": [
+		"node_modules",
+		"dist"
+	]
+}
