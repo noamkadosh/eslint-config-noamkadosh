@@ -1,35 +1,40 @@
-const readPkgUp = require('read-pkg-up');
+const readPkgUp = require('read-pkg-up')
 
 /**
  * @see https://github.com/eslint/eslint/issues/3458
  * @see https://www.npmjs.com/package/@rushstack/eslint-patch
  */
-require('@rushstack/eslint-patch/modern-module-resolution');
+require('@rushstack/eslint-patch/modern-module-resolution')
+
+let hasJest = false
+let hasJestDom = false
+let hasVitest = false
+let hasCypress = false
+let hasTestingLibrary = false
+let testingLibraryConfigs = []
 
 try {
-	const { packageJson } = readPkgUp.sync({ normalize: true });
+	const { packageJson } = readPkgUp.sync({ normalize: true })
 	const allDeps = Object.keys({
 		...packageJson.peerDependencies,
 		...packageJson.devDependencies,
 		...packageJson.dependencies
-	});
+	})
 
-	hasJest = allDeps.includes('jest');
-	hasJestDom = allDeps.includes('@testing-library/jest-dom');
-	hasVitest = allDeps.includes('vitest');
-	hasCypress = allDeps.includes('cypress');
-	hasTestingLibrary = allDeps.filter(dependency =>
-		dependency.includes('testing-library')
-	);
+	hasJest = allDeps.includes('jest')
+	hasJestDom = allDeps.includes('@testing-library/jest-dom')
+	hasVitest = allDeps.includes('vitest')
+	hasCypress = allDeps.includes('cypress')
+	hasTestingLibrary = allDeps.filter(dependency => dependency.includes('testing-library'))
 
 	testingLibraryConfigs = hasTestingLibrary
 		.filter(dependency => {
-			const hasFramework = dependency.includes('react' || 'angular' || 'vue');
-			if (!hasFramework) return dependency.includes('dom');
+			const hasFramework = dependency.includes('react' || 'angular' || 'vue')
+			if (!hasFramework) return dependency.includes('dom')
 
-			return hasFramework;
+			return hasFramework
 		})
-		.map(dependency => dependency.replace('@', 'plugin:'));
+		.map(dependency => dependency.replace('@', 'plugin:'))
 } catch (error) {
 	// ignore error
 }
@@ -39,10 +44,10 @@ const jestConfig = {
 		'jest/globals': true
 	},
 	plugins: [
-		...(hasJest || hasVitest ? ['jest-formatting', 'jest'] : null),
-		hasJestDom ? 'jest-dom' : null,
-		hasCypress ? 'cypress' : null,
-		hasTestingLibrary ? 'testing-library' : null
+		...(hasJest || hasVitest ? ['jest-formatting', 'jest'] : undefined),
+		hasJestDom ? 'jest-dom' : undefined,
+		hasCypress ? 'cypress' : undefined,
+		hasTestingLibrary ? 'testing-library' : undefined
 	],
 	settings: {
 		jest:
@@ -58,13 +63,13 @@ const jestConfig = {
 			extends: [
 				...(hasJest || hasVitest
 					? ['plugin:jest-formatting/recommended', 'plugin:jest/recommended']
-					: null),
-				hasJestDom ? 'plugin:jest-dom/recommended' : null,
-				hasCypress ? 'plugin:cypress/recommended' : null,
-				...(testingLibraryConfigs ? testingLibraryConfigs : null)
+					: undefined),
+				hasJestDom ? 'plugin:jest-dom/recommended' : undefined,
+				hasCypress ? 'plugin:cypress/recommended' : undefined,
+				...(testingLibraryConfigs || undefined)
 			].filter(Boolean)
 		}
 	]
-};
+}
 
-module.exports = jestConfig;
+module.exports = jestConfig

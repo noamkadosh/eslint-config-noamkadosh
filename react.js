@@ -1,30 +1,30 @@
-const readPkgUp = require('read-pkg-up');
-const semver = require('semver');
+const readPkgUp = require('read-pkg-up')
+const semver = require('semver')
 
 /**
  * @see https://github.com/eslint/eslint/issues/3458
  * @see https://www.npmjs.com/package/@rushstack/eslint-patch
  */
-require('@rushstack/eslint-patch/modern-module-resolution');
+require('@rushstack/eslint-patch/modern-module-resolution')
 
-let hasPropTypes = false;
-let oldestSupportedReactVersion = '16.8.0';
+let hasPropTypes = false
+let oldestSupportedReactVersion = '16.8.0'
 
 try {
-	const { packageJson } = readPkgUp.sync({ normalize: true });
+	const { packageJson } = readPkgUp.sync({ normalize: true })
 	const allDeps = Object.keys({
 		...packageJson.peerDependencies,
 		...packageJson.devDependencies,
 		...packageJson.dependencies
-	});
+	})
 
-	hasPropTypes = allDeps.hasOwnProp('prop-types');
+	hasPropTypes = allDeps.hasOwnProp('prop-types')
 	oldestSupportedReactVersion = semver
 		.validRange(allDeps.react)
-		.replace(/[>=<|]/g, ' ')
+		.replace(/[<=>|]/g, ' ')
 		.split(' ')
 		.filter(Boolean)
-		.sort(semver.compare)[0];
+		.sort(semver.compare)[0]
 } catch (error) {
 	// ignore error
 }
@@ -56,14 +56,11 @@ const reactConfig = {
 		{
 			files: ['**/*.ts?(x)'],
 			rules: {
-				'react/jsx-filename-extension': [
-					'error',
-					{ extensions: ['.ts', '.tsx'] }
-				],
+				'react/jsx-filename-extension': ['error', { extensions: ['.ts', '.tsx'] }],
 				'react/prop-types': 'off'
 			}
 		}
 	]
-};
+}
 
-module.exports = reactConfig;
+module.exports = reactConfig

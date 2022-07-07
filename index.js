@@ -1,23 +1,23 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs')
+const path = require('node:path')
 
 /**
  * @see https://github.com/eslint/eslint/issues/3458
  * @see https://www.npmjs.com/package/@rushstack/eslint-patch
  */
-require('@rushstack/eslint-patch/modern-module-resolution');
+require('@rushstack/eslint-patch/modern-module-resolution')
 
 const tsConfig = fs.existsSync('tsconfig.json')
 	? path.resolve('tsconfig.json')
 	: fs.existsSync('types/tsconfig.json')
 	? path.resolve('types/tsconfig.json')
-	: undefined;
+	: undefined
 
 const config = {
 	env: {
 		browser: true,
-		node: true,
-		es2018: true
+		es6: true,
+		node: true
 	},
 	plugins: [
 		'unicorn',
@@ -46,7 +46,9 @@ const config = {
 		'plugin:json/recommended-with-comments',
 		'plugin:prettier/recommended'
 	],
-	browserslist: ['defaults'],
+	parserOptions: {
+		ecmaVersion: 2020
+	},
 	rules: {
 		'no-secrets/no-secrets': 'error',
 		'no-constructor-bind/no-constructor-bind': 'error',
@@ -57,24 +59,16 @@ const config = {
 				blacklist: ['charClassClassrangesMerge']
 			}
 		],
-		indent: ['error', 'tab'],
 		'object-curly-spacing': ['error', 'always'],
 		'comma-dangle': ['error', 'never'],
 		'new-cap': ['error', { capIsNew: false }],
-		'no-unused-vars': [
-			'error',
-			{ argsIgnorePattern: 'res|req|next', args: 'none' }
-		],
+		'no-unused-vars': ['error', { argsIgnorePattern: 'res|req|next', args: 'none' }],
 		'spaced-comment': [2, 'always', { exceptions: ['#'] }],
-		'prettier/prettier': [
-			'error',
-			{ singleQuote: true, jsxSingleQuote: true },
-			{ usePrettierrc: true }
-		],
 		'unicorn/prefer-module': 'off',
 		'unicorn/filename-case': 'off',
 		'unicorn/numeric-separators-style': 'off',
-		'unicorn/prevent-abbreviations': 'off'
+		'unicorn/prevent-abbreviations': 'off',
+		'unicorn/prefer-optional-catch-binding': 'off'
 	},
 	overrides: [
 		{
@@ -82,11 +76,12 @@ const config = {
 			plugins: ['@typescript-eslint'],
 			parser: '@typescript-eslint/parser',
 			parserOptions: {
+				ecmaVersion: 2018,
 				project: tsConfig,
 				sourceType: 'module'
 			}
 		}
 	]
-};
+}
 
-module.exports = config;
+module.exports = config
