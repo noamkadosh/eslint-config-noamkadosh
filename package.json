@@ -1,6 +1,6 @@
 {
 	"name": "eslint-config-noamkadosh",
-	"version": "0.0.4",
+	"version": "0.0.9",
 	"description": "ESLint rules according to noamkadosh' personal preference",
 	"keywords": [
 		"eslint",
@@ -52,7 +52,7 @@
 		"eslint-plugin-switch-case": "^1.1.2",
 		"eslint-plugin-testing-library": "^5.5.1",
 		"eslint-plugin-unicorn": "^43.0.0",
-		"read-pkg-up": "^9.1.0",
+		"read-pkg-up": "^7.0.1",
 		"semver": "^7.3.7"
 	},
 	"devDependencies": {

@@ -22,19 +22,24 @@ try {
 	})
 
 	hasJest = allDeps.includes('jest')
-	hasJestDom = allDeps.includes('@testing-library/jest-dom')
+	hasJestDom = allDeps.includes('jest-dom')
 	hasVitest = allDeps.includes('vitest')
 	hasCypress = allDeps.includes('cypress')
 	hasTestingLibrary = allDeps.filter(dependency => dependency.includes('testing-library'))
 
-	testingLibraryConfigs = hasTestingLibrary
-		.filter(dependency => {
-			const hasFramework = dependency.includes('react' || 'angular' || 'vue')
-			if (!hasFramework) return dependency.includes('dom')
+	testingLibraryConfigs = hasTestingLibrary.filter(
+		dependency =>
+			dependency.includes('/react') ||
+			dependency.includes('/angular') ||
+			dependency.includes('/vue')
+	)
 
-			return hasFramework
-		})
-		.map(dependency => dependency.replace('@', 'plugin:'))
+	if (!testingLibraryConfigs)
+		testingLibraryConfigs = hasTestingLibrary.filter(dependency => dependency.includes('/dom'))
+
+	testingLibraryConfigs = testingLibraryConfigs.map(dependency =>
+		dependency.replace('@', 'plugin:')
+	)
 } catch (error) {
 	// ignore error
 }
@@ -45,7 +50,7 @@ const jestConfig = {
 	},
 	plugins: [
 		...(hasJest || hasVitest ? ['jest-formatting', 'jest'] : undefined),
-		hasJestDom ? 'jest-dom' : undefined,
+		hasJestDom || hasVitest ? 'jest-dom' : undefined,
 		hasCypress ? 'cypress' : undefined,
 		hasTestingLibrary ? 'testing-library' : undefined
 	],
@@ -64,7 +69,7 @@ const jestConfig = {
 				...(hasJest || hasVitest
 					? ['plugin:jest-formatting/recommended', 'plugin:jest/recommended']
 					: undefined),
-				hasJestDom ? 'plugin:jest-dom/recommended' : undefined,
+				hasJestDom || hasVitest ? 'plugin:jest-dom/recommended' : undefined,
 				hasCypress ? 'plugin:cypress/recommended' : undefined,
 				...(testingLibraryConfigs || undefined)
 			].filter(Boolean)
