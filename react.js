@@ -39,7 +39,11 @@ const reactConfig = {
 		}
 	},
 	plugins: ['react', 'react-hooks'],
-	extends: ['plugin:react/recommended', 'plugin:react-hooks/recommended'],
+	extends: [
+		'plugin:react/recommended',
+		'plugin:react/jsx-runtime',
+		'plugin:react-hooks/recommended'
+	],
 	settings: {
 		react: {
 			version: oldestSupportedReactVersion
@@ -50,7 +54,18 @@ const reactConfig = {
 		'react/default-props-match-prop-types': hasPropTypes ? 'error' : 'off',
 		'react/forbid-foreign-prop-types': hasPropTypes ? 'error' : 'off',
 		'react/no-unused-prop-types': hasPropTypes ? 'error' : 'off',
-		'react/react-in-jsx-scope': 'off'
+		'react/react-in-jsx-scope': 'off',
+		'react/jsx-sort-props': [
+			'error',
+			{
+				callbacksLast: true,
+				ignoreCase: false,
+				requiredFirst: true,
+				sortShapeProp: true,
+				noSortAlphabetically: false,
+				reservedFirst: true
+			}
+		]
 	},
 	overrides: [
 		{
