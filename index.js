@@ -19,24 +19,12 @@ const config = {
 		es6: true,
 		node: true
 	},
-	plugins: [
-		'unicorn',
-		'sonarjs',
-		'no-secrets',
-		'no-constructor-bind',
-		'no-use-extend-native',
-		'optimize-regex',
-		'switch-case',
-		'html',
-		'prettier'
-	],
 	extends: [
 		'eslint:recommended',
-		'plugin:compat/recommended',
 		'plugin:unicorn/recommended',
 		'plugin:sonarjs/recommended',
+		'plugin:jsdoc/recommended',
 		'plugin:jsonc/base',
-		'plugin:no-unsanitized/DOM',
 		'plugin:security/recommended',
 		'plugin:array-func/recommended',
 		'plugin:eslint-comments/recommended',
@@ -49,37 +37,61 @@ const config = {
 	parserOptions: {
 		ecmaVersion: 2020
 	},
+	plugins: [
+		'unicorn',
+		'sonarjs',
+		'@html-eslint',
+		'jsdoc',
+		'no-secrets',
+		'no-constructor-bind',
+		'no-use-extend-native',
+		'optimize-regex',
+		'switch-case',
+		'sort-keys-fix',
+		'prettier'
+	],
 	rules: {
-		'no-secrets/no-secrets': 'error',
+		'comma-dangle': ['error', 'never'],
+		'new-cap': ['error', { capIsNew: false }],
 		'no-constructor-bind/no-constructor-bind': 'error',
 		'no-constructor-bind/no-constructor-state': 'error',
+		'no-secrets/no-secrets': 'error',
+		'no-unused-vars': ['error', { args: 'none', argsIgnorePattern: 'res|req|next' }],
+		'object-curly-spacing': ['error', 'always'],
 		'optimize-regex/optimize-regex': [
 			'warn',
 			{
 				blacklist: ['charClassClassrangesMerge']
 			}
 		],
-		'object-curly-spacing': ['error', 'always'],
-		'comma-dangle': ['error', 'never'],
-		'new-cap': ['error', { capIsNew: false }],
-		'no-unused-vars': ['error', { argsIgnorePattern: 'res|req|next', args: 'none' }],
-		'spaced-comment': [2, 'always', { exceptions: ['#'] }],
-		'unicorn/prefer-module': 'off',
+		'sort-keys-fix/sort-keys-fix': ['error', 'asc', { caseSensitive: true, natural: false }],
+		'spaced-comment': ['error', 'always', { exceptions: ['#'] }],
 		'unicorn/filename-case': 'off',
 		'unicorn/numeric-separators-style': 'off',
-		'unicorn/prevent-abbreviations': 'off',
-		'unicorn/prefer-optional-catch-binding': 'off'
+		'unicorn/prefer-module': 'off',
+		'unicorn/prefer-optional-catch-binding': 'off',
+		'unicorn/prevent-abbreviations': 'off'
 	},
+	// eslint-disable-next-line sort-keys-fix/sort-keys-fix
 	overrides: [
 		{
+			extends: [
+				'plugin:@typescript-eslint/recommended',
+				'plugin:@typescript-eslint/recommended-requiring-type-checking'
+			],
 			files: ['**/*.ts?(x)'],
-			plugins: ['@typescript-eslint'],
 			parser: '@typescript-eslint/parser',
 			parserOptions: {
 				ecmaVersion: 2018,
 				project: tsConfig,
 				sourceType: 'module'
-			}
+			},
+			plugins: ['@typescript-eslint']
+		},
+		{
+			extends: ['plugin:@html-eslint/recommended'],
+			files: ['*.html'],
+			parser: '@html-eslint/parser'
 		}
 	]
 }

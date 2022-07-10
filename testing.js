@@ -46,33 +46,35 @@ try {
 
 const jestConfig = {
 	env: {
-		'jest/globals': true
+		...(hasJest || hasVitest ? { 'jest/globals': true } : {})
 	},
 	plugins: [
-		...(hasJest || hasVitest ? ['jest-formatting', 'jest'] : undefined),
-		hasJestDom || hasVitest ? 'jest-dom' : undefined,
-		hasCypress ? 'cypress' : undefined,
-		hasTestingLibrary ? 'testing-library' : undefined
+		...(hasJest || hasVitest ? ['jest', 'jest-formatting', 'jest-async'] : []),
+		...(hasJestDom || hasVitest ? ['jest-dom'] : []),
+		...(hasCypress ? ['cypress'] : []),
+		...(hasTestingLibrary ? ['testing-library'] : [])
 	],
-	settings: {
-		jest:
-			hasJest || hasVitest
-				? {
+	...(hasJest || hasVitest
+		? {
+				settings: {
+					jest: {
 						version: 27
-				  }
-				: {}
-	},
+					}
+				}
+		  }
+		: {}),
+	// eslint-disable-next-line sort-keys-fix/sort-keys-fix
 	overrides: [
 		{
-			files: ['**/*.{test|spec}.{j|t}s?(x)'],
 			extends: [
 				...(hasJest || hasVitest
 					? ['plugin:jest-formatting/recommended', 'plugin:jest/recommended']
-					: undefined),
-				hasJestDom || hasVitest ? 'plugin:jest-dom/recommended' : undefined,
-				hasCypress ? 'plugin:cypress/recommended' : undefined,
-				...(testingLibraryConfigs || undefined)
-			].filter(Boolean)
+					: []),
+				...(hasJestDom || hasVitest ? ['plugin:jest-dom/recommended'] : []),
+				...(hasCypress ? ['plugin:cypress/recommended'] : []),
+				...(testingLibraryConfigs || [])
+			].filter(Boolean),
+			files: ['**/*.{test|spec}.{j|t}s?(x)']
 		}
 	]
 }

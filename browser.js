@@ -4,17 +4,15 @@
  */
 require('@rushstack/eslint-patch/modern-module-resolution')
 
-const a11yConfig = {
+const browserConfig = {
 	env: {
 		browser: true
 	},
+	extends: ['plugin:compat/recommended', 'plugin:no-unsanitized/DOM'],
 	parserOptions: {
-		ecmaFeatures: {
-			jsx: true
-		}
+		ecmaVersion: 2020
 	},
-	plugins: ['jsx-a11y'],
-	extends: ['plugin:jsx-a11y/recommended']
+	plugins: ['html']
 }
 
-module.exports = a11yConfig
+module.exports = browserConfig

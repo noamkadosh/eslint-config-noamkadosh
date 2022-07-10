@@ -7,6 +7,7 @@ const semver = require('semver')
  */
 require('@rushstack/eslint-patch/modern-module-resolution')
 
+let hasRedux = false
 let hasPropTypes = false
 let oldestSupportedReactVersion = '16.8.0'
 
@@ -18,6 +19,7 @@ try {
 		...packageJson.dependencies
 	})
 
+	hasRedux = allDeps.hasOwnProp('react-redux')
 	hasPropTypes = allDeps.hasOwnProp('prop-types')
 	oldestSupportedReactVersion = semver
 		.validRange(allDeps.react)
@@ -33,40 +35,33 @@ const reactConfig = {
 	env: {
 		browser: true
 	},
+	extends: [
+		'plugin:react/recommended',
+		'plugin:react/jsx-runtime',
+		'plugin:react-hooks/recommended',
+		...(hasRedux ? 'plugin:react-redux/recommended' : [])
+	],
 	parserOptions: {
 		ecmaFeatures: {
 			jsx: true
 		}
 	},
-	plugins: ['react', 'react-hooks'],
-	extends: [
-		'plugin:react/recommended',
-		'plugin:react/jsx-runtime',
-		'plugin:react-hooks/recommended'
-	],
+	plugins: ['react', 'react-hooks', ...(hasRedux ? ['react-redux'] : [])],
+	rules: {
+		'react/default-props-match-prop-types': hasPropTypes ? 'error' : 'off',
+		'react/forbid-foreign-prop-types': hasPropTypes ? 'error' : 'off',
+		'react/jsx-sort-default-props': hasPropTypes ? 'error' : 'off',
+		'react/jsx-sort-props': 'error',
+		'react/no-unused-prop-types': hasPropTypes ? 'error' : 'off',
+		'react/prop-types': hasPropTypes ? 'error' : 'off',
+		'react/react-in-jsx-scope': 'off'
+	},
 	settings: {
 		react: {
 			version: oldestSupportedReactVersion
 		}
 	},
-	rules: {
-		'react/prop-types': hasPropTypes ? 'error' : 'off',
-		'react/default-props-match-prop-types': hasPropTypes ? 'error' : 'off',
-		'react/forbid-foreign-prop-types': hasPropTypes ? 'error' : 'off',
-		'react/no-unused-prop-types': hasPropTypes ? 'error' : 'off',
-		'react/react-in-jsx-scope': 'off',
-		'react/jsx-sort-props': [
-			'error',
-			{
-				callbacksLast: true,
-				ignoreCase: false,
-				requiredFirst: true,
-				sortShapeProp: true,
-				noSortAlphabetically: false,
-				reservedFirst: true
-			}
-		]
-	},
+	// eslint-disable-next-line sort-keys-fix/sort-keys-fix
 	overrides: [
 		{
 			files: ['**/*.ts?(x)'],
