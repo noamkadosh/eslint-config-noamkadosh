@@ -8,11 +8,11 @@ const browserConfig = {
 	env: {
 		browser: true
 	},
-	extends: ['plugin:compat/recommended', 'plugin:no-unsanitized/DOM'],
+	extends: ['plugin:github/browser', 'plugin:compat/recommended', 'plugin:no-unsanitized/DOM'],
 	parserOptions: {
 		ecmaVersion: 2020
 	},
-	plugins: ['html']
+	plugins: ['github', 'html']
 }
 
 module.exports = browserConfig

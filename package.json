@@ -1,6 +1,6 @@
 {
 	"name": "eslint-config-noamkadosh",
-	"version": "0.0.12",
+	"version": "1.0.0",
 	"description": "ESLint rules according to noamkadosh' personal preference",
 	"keywords": [
 		"eslint",
@@ -55,6 +55,7 @@
 		"eslint-plugin-compat": "^4.0.2",
 		"eslint-plugin-cypress": "^2.12.1",
 		"eslint-plugin-eslint-comments": "^3.2.0",
+		"eslint-plugin-github": "^4.3.6",
 		"eslint-plugin-html": "^6.2.0",
 		"eslint-plugin-jest": "^26.5.3",
 		"eslint-plugin-jest-async": "^1.0.3",
@@ -62,6 +63,8 @@
 		"eslint-plugin-jest-formatting": "^3.1.0",
 		"eslint-plugin-jsdoc": "^39.3.3",
 		"eslint-plugin-json": "^3.1.0",
+		"eslint-plugin-json-format": "^2.0.1",
+		"eslint-plugin-json-schema-validator": "^3.2.5",
 		"eslint-plugin-jsonc": "^2.3.1",
 		"eslint-plugin-jsx-a11y": "^6.6.0",
 		"eslint-plugin-markdown": "^2.2.1",
@@ -80,9 +83,12 @@
 		"eslint-plugin-security": "^1.5.0",
 		"eslint-plugin-sonarjs": "^0.13.0",
 		"eslint-plugin-sort-keys-fix": "^1.1.2",
+		"eslint-plugin-sql": "^2.1.0",
 		"eslint-plugin-switch-case": "^1.1.2",
 		"eslint-plugin-testing-library": "^5.5.1",
+		"eslint-plugin-toml": "^0.3.1",
 		"eslint-plugin-unicorn": "^43.0.0",
+		"eslint-plugin-yml": "^1.0.0",
 		"read-pkg-up": "^7.0.1",
 		"semver": "^7.3.7"
 	},

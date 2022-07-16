@@ -21,10 +21,17 @@ const config = {
 	},
 	extends: [
 		'eslint:recommended',
+		'plugin:github/recommended',
 		'plugin:unicorn/recommended',
 		'plugin:sonarjs/recommended',
 		'plugin:jsdoc/recommended',
-		'plugin:jsonc/base',
+		'plugin:json/recommended-with-comments',
+		'plugin:jsonc/recommended-with-json',
+		'plugin:jsonc/prettier',
+		'plugin:json-schema-validator/recommended',
+		'plugin:toml/standard',
+		'plugin:yml/standard',
+		'plugin:yml/prettier',
 		'plugin:security/recommended',
 		'plugin:array-func/recommended',
 		'plugin:eslint-comments/recommended',
@@ -38,10 +45,12 @@ const config = {
 		ecmaVersion: 2020
 	},
 	plugins: [
+		'github',
 		'unicorn',
 		'sonarjs',
 		'@html-eslint',
 		'jsdoc',
+		'json-format',
 		'no-secrets',
 		'no-constructor-bind',
 		'no-use-extend-native',
@@ -77,7 +86,8 @@ const config = {
 		{
 			extends: [
 				'plugin:@typescript-eslint/recommended',
-				'plugin:@typescript-eslint/recommended-requiring-type-checking'
+				'plugin:@typescript-eslint/recommended-requiring-type-checking',
+				'plugin:github/typescript'
 			],
 			files: ['**/*.ts?(x)'],
 			parser: '@typescript-eslint/parser',

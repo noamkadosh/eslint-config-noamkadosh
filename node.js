@@ -11,7 +11,8 @@ const nodeConfig = {
 	extends: ['plugin:node/recommended'],
 	parserOptions: {
 		ecmaVersion: 2020
-	}
+	},
+	plugins: ['sql']
 }
 
 module.exports = nodeConfig
