@@ -25,22 +25,16 @@ const config = {
 		'plugin:unicorn/recommended',
 		'plugin:sonarjs/recommended',
 		'plugin:jsdoc/recommended',
-		'plugin:json/recommended-with-comments',
-		'plugin:jsonc/recommended-with-json',
-		'plugin:jsonc/prettier',
-		'plugin:json-schema-validator/recommended',
 		'plugin:toml/standard',
-		'plugin:yml/standard',
-		'plugin:yml/prettier',
 		'plugin:security/recommended',
 		'plugin:array-func/recommended',
 		'plugin:eslint-comments/recommended',
 		'plugin:promise/recommended',
 		'plugin:switch-case/recommended',
 		'plugin:markdown/recommended',
-		'plugin:json/recommended-with-comments',
 		'plugin:prettier/recommended'
 	],
+	ignorePatterns: ['**/*.{html,json,jsonc,json5,yml,yaml}'],
 	parserOptions: {
 		ecmaVersion: 2020
 	},
@@ -48,9 +42,7 @@ const config = {
 		'github',
 		'unicorn',
 		'sonarjs',
-		'@html-eslint',
 		'jsdoc',
-		'json-format',
 		'no-secrets',
 		'no-constructor-bind',
 		'no-use-extend-native',
@@ -60,6 +52,7 @@ const config = {
 		'prettier'
 	],
 	rules: {
+		'array-func/prefer-array-from': 'off',
 		'comma-dangle': ['error', 'never'],
 		'new-cap': ['error', { capIsNew: false }],
 		'no-constructor-bind/no-constructor-bind': 'error',
@@ -89,7 +82,7 @@ const config = {
 				'plugin:@typescript-eslint/recommended-requiring-type-checking',
 				'plugin:github/typescript'
 			],
-			files: ['**/*.ts?(x)'],
+			files: ['**/*.{ts,tsx}'],
 			parser: '@typescript-eslint/parser',
 			parserOptions: {
 				ecmaVersion: 2018,
@@ -100,8 +93,22 @@ const config = {
 		},
 		{
 			extends: ['plugin:@html-eslint/recommended'],
-			files: ['*.html'],
+			files: ['**/*.html'],
 			parser: '@html-eslint/parser'
+		},
+		{
+			extends: [
+				'plugin:json/recommended-with-comments',
+				'plugin:jsonc/recommended-with-json',
+				'plugin:jsonc/prettier',
+				'plugin:json-schema-validator/recommended'
+			],
+			files: ['**/*.{json,jsonc,json5}'],
+			plugins: ['json-format']
+		},
+		{
+			extends: ['plugin:yml/standard', 'plugin:yml/prettier'],
+			files: ['**/*.{yml,yaml}']
 		}
 	]
 }

@@ -44,7 +44,7 @@ try {
 	// ignore error
 }
 
-const jestConfig = {
+const testingConfig = {
 	env: {
 		...(hasJest || hasVitest ? { 'jest/globals': true } : {})
 	},
@@ -63,7 +63,6 @@ const jestConfig = {
 				}
 		  }
 		: {}),
-	// eslint-disable-next-line sort-keys-fix/sort-keys-fix
 	overrides: [
 		{
 			extends: [
@@ -72,11 +71,11 @@ const jestConfig = {
 					: []),
 				...(hasJestDom || hasVitest ? ['plugin:jest-dom/recommended'] : []),
 				...(hasCypress ? ['plugin:cypress/recommended'] : []),
-				...(testingLibraryConfigs || [])
+				...(hasTestingLibrary ? testingLibraryConfigs : [])
 			].filter(Boolean),
-			files: ['**/*.{test|spec}.{j|t}s?(x)']
+			files: ['**/*.{test,spec}.{js,jsx,ts,tsx}']
 		}
 	]
 }
 
-module.exports = jestConfig
+module.exports = testingConfig

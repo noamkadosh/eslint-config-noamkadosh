@@ -64,7 +64,7 @@ const reactConfig = {
 	// eslint-disable-next-line sort-keys-fix/sort-keys-fix
 	overrides: [
 		{
-			files: ['**/*.ts?(x)'],
+			files: ['**/*.{ts,tsx}'],
 			rules: {
 				'react/jsx-filename-extension': ['error', { extensions: ['.ts', '.tsx'] }],
 				'react/prop-types': 'off'
