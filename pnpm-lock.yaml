@@ -51,7 +51,6 @@ specifiers:
   eslint-plugin-yml: ^1.0.0
   prettier: ^2.7.1
   read-pkg-up: ^7.0.1
-  semver: ^7.3.7
   typescript: ^4.7.4
 
 dependencies:
@@ -101,7 +100,6 @@ dependencies:
   eslint-plugin-unicorn: 43.0.0_eslint@8.19.0
   eslint-plugin-yml: 1.0.0_eslint@8.19.0
   read-pkg-up: 7.0.1
-  semver: 7.3.7
 
 devDependencies:
   concurrently: 7.2.2

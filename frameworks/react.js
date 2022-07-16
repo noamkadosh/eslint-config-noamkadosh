@@ -1,5 +1,4 @@
 const readPkgUp = require('read-pkg-up')
-const semver = require('semver')
 
 /**
  * @see https://github.com/eslint/eslint/issues/3458
@@ -9,7 +8,6 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 
 let hasRedux = false
 let hasPropTypes = false
-let oldestSupportedReactVersion = '16.8.0'
 
 try {
 	const { packageJson } = readPkgUp.sync({ normalize: true })
@@ -19,14 +17,8 @@ try {
 		...packageJson.dependencies
 	})
 
-	hasRedux = allDeps.hasOwnProp('react-redux')
-	hasPropTypes = allDeps.hasOwnProp('prop-types')
-	oldestSupportedReactVersion = semver
-		.validRange(allDeps.react)
-		.replace(/[<=>|]/g, ' ')
-		.split(' ')
-		.filter(Boolean)
-		.sort(semver.compare)[0]
+	hasRedux = allDeps.includes('react-redux')
+	hasPropTypes = allDeps.includes('prop-types')
 } catch (error) {
 	// ignore error
 }
@@ -58,7 +50,7 @@ const reactConfig = {
 	},
 	settings: {
 		react: {
-			version: oldestSupportedReactVersion
+			version: '16.8.0'
 		}
 	},
 	// eslint-disable-next-line sort-keys-fix/sort-keys-fix

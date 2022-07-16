@@ -16,7 +16,7 @@ try {
 		...packageJson.dependencies
 	})
 
-	hasReact = allDeps.hasOwnProp('react')
+	hasReact = allDeps.includes('react')
 } catch (error) {
 	// ignore error
 }

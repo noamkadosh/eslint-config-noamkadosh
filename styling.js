@@ -15,7 +15,7 @@ try {
 		...packageJson.dependencies
 	})
 
-	hasTailwindCSS = allDeps.hasOwnProp('tailwindcss')
+	hasTailwindCSS = allDeps.includes('tailwindcss')
 } catch (error) {
 	// ignore error
 }
@@ -30,7 +30,7 @@ const stylingConfig = {
 	},
 	plugins: [...(hasTailwindCSS ? ['tailwindcss'] : [])],
 	rules: {
-		...(hasTailwindCSS ? { 'tailwindcss/classnames-order': 'on' } : {})
+		...(hasTailwindCSS ? { 'tailwindcss/classnames-order': 'error' } : {})
 	}
 }
 
