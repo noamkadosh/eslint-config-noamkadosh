@@ -6,6 +6,7 @@ specifiers:
   '@rushstack/eslint-config': ^2.6.2
   '@typescript-eslint/eslint-plugin': ^5.30.5
   '@typescript-eslint/parser': ^5.30.5
+  browserslist-config-noamkadosh: ^1.0.0
   concurrently: ^7.2.2
   eslint: ^8.19.0
   eslint-config-prettier: ^8.5.0
@@ -59,6 +60,7 @@ dependencies:
   '@rushstack/eslint-config': 2.6.2_4x5o4skxv6sl53vpwefgt23khm
   '@typescript-eslint/eslint-plugin': 5.30.5_6zdoc3rn4mpiddqwhppni2mnnm
   '@typescript-eslint/parser': 5.30.5_4x5o4skxv6sl53vpwefgt23khm
+  browserslist-config-noamkadosh: 1.0.0
   eslint-config-prettier: 8.5.0_eslint@8.19.0
   eslint-plugin-array-func: 3.1.7_eslint@8.19.0
   eslint-plugin-compat: 4.0.2_eslint@8.19.0
@@ -834,6 +836,10 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       fill-range: 7.0.1
+    dev: false
+
+  /browserslist-config-noamkadosh/1.0.0:
+    resolution: {integrity: sha512-vri6TYp0lNyyhoDrHc6O5qmXEih5v1ZwaKiXJ/4UiPKlnGkSML1Kjvai0vCDpeIlZFDzNyULmfpz0/83/nVFyQ==}
     dev: false
 
   /browserslist/4.21.1:
