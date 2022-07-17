@@ -82,16 +82,31 @@ const config = {
 			extends: [
 				'plugin:@typescript-eslint/recommended',
 				'plugin:@typescript-eslint/recommended-requiring-type-checking',
-				'plugin:github/typescript'
+				'plugin:github/typescript',
+				'plugin:import/typescript' // github plugin doesn't include this one for typescript
 			],
 			files: ['**/*.{ts,tsx}'],
 			parser: '@typescript-eslint/parser',
 			parserOptions: {
-				ecmaVersion: 2018,
+				ecmaVersion: 2020,
 				project: tsConfig,
 				sourceType: 'module'
 			},
-			plugins: ['@typescript-eslint']
+			plugins: ['@typescript-eslint'],
+			rules: {
+				'import/no-unresolved': 'error'
+			},
+			settings: {
+				'import/parsers': {
+					'@typescript-eslint/parser': ['.ts', '.tsx']
+				},
+				'import/resolver': {
+					typescript: {
+						alwaysTryTypes: true,
+						project: [tsConfig]
+					}
+				}
+			}
 		},
 		{
 			extends: ['plugin:@html-eslint/recommended'],
