@@ -54,6 +54,7 @@ const config = {
 	rules: {
 		'array-func/prefer-array-from': 'off',
 		'comma-dangle': ['error', 'never'],
+		'filenames/match-regex': 'off',
 		'new-cap': ['error', { capIsNew: false }],
 		'no-constructor-bind/no-constructor-bind': 'error',
 		'no-constructor-bind/no-constructor-state': 'error',
