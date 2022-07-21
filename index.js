@@ -104,7 +104,7 @@ const config = {
 				'import/resolver': {
 					typescript: {
 						alwaysTryTypes: true,
-						project: [tsConfig]
+						project: tsConfig
 					}
 				}
 			}
