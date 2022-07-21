@@ -36,7 +36,8 @@ const config = {
 	],
 	ignorePatterns: ['**/*.{html,json,jsonc,json5,yml,yaml}'],
 	parserOptions: {
-		ecmaVersion: 2020
+		ecmaVersion: 2020,
+		sourceType: 'module'
 	},
 	plugins: [
 		'github',
