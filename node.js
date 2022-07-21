@@ -12,7 +12,10 @@ const nodeConfig = {
 	parserOptions: {
 		ecmaVersion: 2020
 	},
-	plugins: ['sql']
+	plugins: ['sql'],
+	rules: {
+		'no-console': 'off'
+	}
 }
 
 module.exports = nodeConfig
