@@ -9,6 +9,8 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 
 const tsConfig = fs.existsSync('tsconfig.json')
 	? path.resolve('tsconfig.json')
+	: fs.existsSync('tsconfig.base.json')
+	? path.resolve('tsconfig.base.json') // nx support
 	: fs.existsSync('types/tsconfig.json')
 	? path.resolve('types/tsconfig.json')
 	: undefined
