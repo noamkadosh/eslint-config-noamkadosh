@@ -1,6 +1,6 @@
 {
 	"name": "eslint-config-noamkadosh",
-	"version": "1.0.17",
+	"version": "1.0.21",
 	"description": "ESLint rules according to noamkadosh' personal preference",
 	"type": "commonjs",
 	"keywords": [
@@ -134,8 +134,8 @@
 		"arrowParens": "avoid"
 	},
 	"engines": {
-		"node": "^12.22.0 || ^14.17.0 || >=16.0.0",
-		"npm": ">=6",
+		"node": "^16.2.0",
+		"npm": ">=7",
 		"yarn": ">=1",
 		"pnpm": ">=6"
 	},

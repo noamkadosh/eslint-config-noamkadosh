@@ -132,9 +132,10 @@ const config = {
 			files: ['**/*.{yml,yaml}']
 		},
 		{
-			files: ['**/*.config.{js,json,jsonc,json5,yml,yaml}'],
+			files: ['**/*.cjs', '**/*.config.{js,json,jsonc,json5,yml,yaml}'],
 			rules: {
-				'import/no-commonjs': 'off'
+				'import/no-commonjs': 'off',
+				'import/no-nodejs-modules': 'off'
 			}
 		}
 	]

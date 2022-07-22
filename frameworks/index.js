@@ -1,4 +1,3 @@
-const readPkgUp = require('read-pkg-up')
 const reactConfig = require('./react')
 /**
  * @see https://github.com/eslint/eslint/issues/3458
@@ -9,6 +8,8 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 let hasReact = false
 
 try {
+	const readPkgUp = async () => await import('read-pkg-up')()
+
 	const { packageJson } = readPkgUp.sync({ normalize: true })
 	const allDeps = Object.keys({
 		...packageJson.peerDependencies,
