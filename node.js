@@ -14,7 +14,11 @@ const nodeConfig = {
 	},
 	plugins: ['sql'],
 	rules: {
-		'no-console': 'off'
+		'no-console': 'off',
+		'node/no-extraneous-import': 'off',
+		'node/no-missing-import': 'off',
+		'node/no-missing-require': 'off',
+		'node/no-unsupported-features/es-syntax': 'off'
 	}
 }
 

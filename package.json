@@ -1,6 +1,6 @@
 {
 	"name": "eslint-config-noamkadosh",
-	"version": "1.0.13",
+	"version": "1.0.14",
 	"description": "ESLint rules according to noamkadosh' personal preference",
 	"keywords": [
 		"eslint",
