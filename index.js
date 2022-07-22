@@ -59,6 +59,7 @@ const config = {
 		'comma-dangle': ['error', 'never'],
 		'filenames/match-regex': 'off',
 		'import/extensions': ['warn', 'never'],
+		'import/no-nodejs-modules': 'off',
 		'new-cap': ['error', { capIsNew: false }],
 		'no-constructor-bind/no-constructor-bind': 'error',
 		'no-constructor-bind/no-constructor-state': 'error',
@@ -129,6 +130,12 @@ const config = {
 		{
 			extends: ['plugin:yml/standard', 'plugin:yml/prettier'],
 			files: ['**/*.{yml,yaml}']
+		},
+		{
+			files: ['**/*.config.{js,json,jsonc,json5,yml,yaml}'],
+			rules: {
+				'import/no-commonjs': 'off'
+			}
 		}
 	]
 }
