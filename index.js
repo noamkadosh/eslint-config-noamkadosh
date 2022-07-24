@@ -98,6 +98,7 @@ const config = {
 			},
 			plugins: ['@typescript-eslint'],
 			rules: {
+				'@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: false }],
 				'import/no-unresolved': 'error'
 			},
 			settings: {
