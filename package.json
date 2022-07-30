@@ -1,6 +1,6 @@
 {
 	"name": "eslint-config-noamkadosh",
-	"version": "1.0.23",
+	"version": "1.0.24",
 	"description": "ESLint rules according to noamkadosh' personal preference",
 	"type": "commonjs",
 	"keywords": [
@@ -67,8 +67,6 @@
 		"eslint-plugin-jest-formatting": "^3.1.0",
 		"eslint-plugin-jsdoc": "^39.3.3",
 		"eslint-plugin-json": "^3.1.0",
-		"eslint-plugin-json-format": "^2.0.1",
-		"eslint-plugin-json-schema-validator": "^4.0.0",
 		"eslint-plugin-jsonc": "^2.3.1",
 		"eslint-plugin-jsx-a11y": "^6.6.1",
 		"eslint-plugin-markdown": "^3.0.0",

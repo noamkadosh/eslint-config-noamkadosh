@@ -119,14 +119,12 @@ const config = {
 			parser: '@html-eslint/parser'
 		},
 		{
-			extends: [
-				'plugin:json/recommended-with-comments',
-				'plugin:jsonc/recommended-with-json',
-				'plugin:jsonc/prettier',
-				'plugin:json-schema-validator/recommended'
-			],
-			files: ['**/*.{json,jsonc,json5}'],
-			plugins: ['json-format']
+			extends: ['plugin:json/recommended-with-comments'],
+			files: ['**/*.{json}']
+		},
+		{
+			extends: ['plugin:jsonc/recommended-with-json', 'plugin:jsonc/prettier'],
+			files: ['**/*.{jsonc,json5}']
 		},
 		{
 			extends: ['plugin:yml/standard', 'plugin:yml/prettier'],
