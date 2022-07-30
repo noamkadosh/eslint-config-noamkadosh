@@ -12,7 +12,15 @@ const browserConfig = {
 	parserOptions: {
 		ecmaVersion: 2020
 	},
-	plugins: ['github', 'html']
+	plugins: ['github', 'html', '@html-eslint'],
+	// eslint-disable-next-line sort-keys-fix/sort-keys-fix
+	overrides: [
+		{
+			extends: ['plugin:@html-eslint/recommended'],
+			files: ['**/*.html'],
+			parser: '@html-eslint/parser'
+		}
+	]
 }
 
 module.exports = browserConfig

@@ -36,7 +36,6 @@ const config = {
 		'plugin:markdown/recommended',
 		'plugin:prettier/recommended'
 	],
-	ignorePatterns: ['**/*.{html,json,jsonc,json5,yml,yaml}'],
 	parserOptions: {
 		ecmaVersion: 2020,
 		sourceType: 'module'
@@ -112,11 +111,6 @@ const config = {
 					}
 				}
 			}
-		},
-		{
-			extends: ['plugin:@html-eslint/recommended'],
-			files: ['**/*.html'],
-			parser: '@html-eslint/parser'
 		},
 		{
 			extends: ['plugin:json/recommended-with-comments'],
