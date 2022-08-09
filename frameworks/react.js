@@ -1,3 +1,5 @@
+const readPkgUp = require('read-pkg-up')
+
 /**
  * @see https://github.com/eslint/eslint/issues/3458
  * @see https://www.npmjs.com/package/@rushstack/eslint-patch
@@ -8,8 +10,6 @@ let hasRedux = false
 let hasPropTypes = false
 
 try {
-	const readPkgUp = async () => await import('read-pkg-up')()
-
 	const { packageJson } = readPkgUp.sync({ normalize: true })
 	const allDeps = Object.keys({
 		...packageJson.peerDependencies,
@@ -25,7 +25,8 @@ try {
 
 const reactConfig = {
 	env: {
-		browser: true
+		browser: true,
+		es2022: true
 	},
 	extends: [
 		'plugin:react/recommended',

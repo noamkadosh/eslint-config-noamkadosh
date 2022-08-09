@@ -18,7 +18,7 @@ const tsConfig = fs.existsSync('tsconfig.json')
 const config = {
 	env: {
 		browser: true,
-		es6: true,
+		es2022: true,
 		node: true
 	},
 	extends: [
@@ -37,7 +37,7 @@ const config = {
 		'plugin:prettier/recommended'
 	],
 	parserOptions: {
-		ecmaVersion: 2020,
+		ecmaVersion: 'latest',
 		sourceType: 'module'
 	},
 	plugins: [
@@ -91,7 +91,7 @@ const config = {
 			files: ['**/*.{ts,tsx}'],
 			parser: '@typescript-eslint/parser',
 			parserOptions: {
-				ecmaVersion: 2020,
+				ecmaVersion: 'latest',
 				project: tsConfig,
 				sourceType: 'module'
 			},

@@ -6,7 +6,8 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 
 const jsxConfig = {
 	env: {
-		browser: true
+		browser: true,
+		es2022: true
 	},
 	extends: ['plugin:jsx-a11y/recommended'],
 	parserOptions: {

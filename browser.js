@@ -6,11 +6,12 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 
 const browserConfig = {
 	env: {
-		browser: true
+		browser: true,
+		es2022: true
 	},
 	extends: ['plugin:github/browser', 'plugin:compat/recommended', 'plugin:no-unsanitized/DOM'],
 	parserOptions: {
-		ecmaVersion: 2020
+		ecmaVersion: 'latest'
 	},
 	plugins: ['github', 'html', '@html-eslint'],
 	// eslint-disable-next-line sort-keys-fix/sort-keys-fix

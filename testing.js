@@ -1,5 +1,6 @@
 const fs = require('node:fs')
 const path = require('node:path')
+const readPkgUp = require('read-pkg-up')
 
 /**
  * @see https://github.com/eslint/eslint/issues/3458
@@ -15,6 +16,8 @@ const tsConfig = fs.existsSync('tsconfig.json')
 	? path.resolve('types/tsconfig.json')
 	: undefined
 
+let allDeps = []
+
 let hasJest = false
 let hasJestDom = false
 let hasVitest = false
@@ -23,14 +26,14 @@ let hasTestingLibrary = false
 let testingLibraryConfigs = []
 
 try {
-	const readPkgUp = async () => await import('read-pkg-up')()
-
 	const { packageJson } = readPkgUp.sync({ normalize: true })
-	const allDeps = Object.keys({
-		...packageJson.peerDependencies,
-		...packageJson.devDependencies,
-		...packageJson.dependencies
-	})
+
+	if (packageJson)
+		allDeps = Object.keys({
+			...packageJson.peerDependencies,
+			...packageJson.devDependencies,
+			...packageJson.dependencies
+		})
 
 	hasJest = allDeps.includes('jest')
 	hasJestDom = allDeps.includes('jest-dom')
@@ -57,13 +60,14 @@ try {
 
 const testingConfig = {
 	env: {
+		es2022: true,
 		...(hasJest || hasVitest ? { 'jest/globals': true } : {})
 	},
 	plugins: [
 		...(hasJest || hasVitest ? ['jest', 'jest-formatting', 'jest-async'] : []),
 		...(hasJestDom || hasVitest ? ['jest-dom'] : []),
 		...(hasCypress ? ['cypress'] : []),
-		...(hasTestingLibrary ? ['testing-library'] : [])
+		...(hasTestingLibrary.length > 0 ? ['testing-library'] : [])
 	],
 	...(hasJest || hasVitest
 		? {
@@ -82,7 +86,7 @@ const testingConfig = {
 					: []),
 				...(hasJestDom || hasVitest ? ['plugin:jest-dom/recommended'] : []),
 				...(hasCypress ? ['plugin:cypress/recommended'] : []),
-				...(hasTestingLibrary ? testingLibraryConfigs : [])
+				...(hasTestingLibrary.length > 0 ? testingLibraryConfigs : [])
 			].filter(Boolean),
 			files: ['**/*.{test,spec}.{js,jsx}']
 		},
@@ -93,7 +97,7 @@ const testingConfig = {
 					: []),
 				...(hasJestDom || hasVitest ? ['plugin:jest-dom/recommended'] : []),
 				...(hasCypress ? ['plugin:cypress/recommended'] : []),
-				...(hasTestingLibrary ? testingLibraryConfigs : [])
+				...(hasTestingLibrary.length > 0 ? testingLibraryConfigs : [])
 			].filter(Boolean),
 			files: ['**/*.{test,spec}.{ts,tsx}'],
 			parserOptions: {

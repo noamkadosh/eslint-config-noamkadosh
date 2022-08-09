@@ -6,11 +6,12 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 
 const nodeConfig = {
 	env: {
+		es2022: true,
 		node: true
 	},
 	extends: ['plugin:node/recommended'],
 	parserOptions: {
-		ecmaVersion: 2020
+		ecmaVersion: 'latest'
 	},
 	plugins: ['sql'],
 	rules: {
