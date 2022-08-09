@@ -85,9 +85,8 @@ const testingConfig = {
 					? ['plugin:jest-formatting/recommended', 'plugin:jest/recommended']
 					: []),
 				...(hasJestDom || hasVitest ? ['plugin:jest-dom/recommended'] : []),
-				...(hasCypress ? ['plugin:cypress/recommended'] : []),
 				...(hasTestingLibrary.length > 0 ? testingLibraryConfigs : [])
-			].filter(Boolean),
+			],
 			files: ['**/*.{test,spec}.{js,jsx}']
 		},
 		{
@@ -96,10 +95,27 @@ const testingConfig = {
 					? ['plugin:jest-formatting/recommended', 'plugin:jest/recommended']
 					: []),
 				...(hasJestDom || hasVitest ? ['plugin:jest-dom/recommended'] : []),
-				...(hasCypress ? ['plugin:cypress/recommended'] : []),
 				...(hasTestingLibrary.length > 0 ? testingLibraryConfigs : [])
-			].filter(Boolean),
+			],
 			files: ['**/*.{test,spec}.{ts,tsx}'],
+			parserOptions: {
+				project: tsConfig
+			},
+			settings: {
+				'import/resolver': {
+					typescript: {
+						project: tsConfig
+					}
+				}
+			}
+		},
+		{
+			extends: [...(hasCypress ? ['plugin:cypress/recommended'] : [])],
+			files: ['**/*.cy.{js,jsx}']
+		},
+		{
+			extends: [...(hasCypress ? ['plugin:cypress/recommended'] : [])],
+			files: ['**/*.cy.{ts,tsx}'],
 			parserOptions: {
 				project: tsConfig
 			},
