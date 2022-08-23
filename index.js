@@ -57,7 +57,21 @@ const config = {
 		'array-func/prefer-array-from': 'off',
 		'comma-dangle': ['error', 'never'],
 		'filenames/match-regex': 'off',
-		'import/extensions': ['warn', 'never'],
+		'import/extensions': [
+			'warn',
+			'never',
+			{
+				css: 'always',
+				html: 'always',
+				json: 'always',
+				json5: 'always',
+				jsonc: 'always',
+				png: 'always',
+				sass: 'always',
+				scss: 'always',
+				svg: 'always'
+			}
+		],
 		'import/no-nodejs-modules': 'off',
 		'new-cap': ['error', { capIsNew: false }],
 		'no-constructor-bind/no-constructor-bind': 'error',
@@ -114,7 +128,7 @@ const config = {
 		},
 		{
 			extends: ['plugin:json/recommended-with-comments'],
-			files: ['**/*.{json}']
+			files: ['**/*.json']
 		},
 		{
 			extends: ['plugin:jsonc/recommended-with-json', 'plugin:jsonc/prettier'],
