@@ -58,7 +58,7 @@ const config = {
 		'comma-dangle': ['error', 'never'],
 		'filenames/match-regex': 'off',
 		'import/extensions': [
-			'warn',
+			'error',
 			'never',
 			{
 				css: 'always',
@@ -77,10 +77,10 @@ const config = {
 		'no-constructor-bind/no-constructor-bind': 'error',
 		'no-constructor-bind/no-constructor-state': 'error',
 		'no-secrets/no-secrets': 'error',
-		'no-unused-vars': ['error', { args: 'none', argsIgnorePattern: 'res|req|next' }],
+		'no-unused-vars': ['error', { args: 'none', argsIgnorePattern: 'ctx|res|req|next' }],
 		'object-curly-spacing': ['error', 'always'],
 		'optimize-regex/optimize-regex': [
-			'warn',
+			'error',
 			{
 				blacklist: ['charClassClassrangesMerge']
 			}
@@ -112,7 +112,9 @@ const config = {
 			plugins: ['@typescript-eslint'],
 			rules: {
 				'@typescript-eslint/no-misused-promises': ['error', { checksVoidReturn: false }],
-				'import/no-unresolved': 'error'
+				'import/no-unresolved': 'error',
+				'jsdoc/require-param-type': 'off',
+				'jsdoc/require-returns-type': 'off'
 			},
 			settings: {
 				'import/parsers': {
