@@ -1,143 +1,140 @@
 {
-	"name": "eslint-config-noamkadosh",
-	"version": "1.1.4",
-	"description": "ESLint rules according to noamkadosh' personal preference",
-	"type": "commonjs",
-	"keywords": [
-		"eslint",
-		"eslintconfig",
-		"config",
-		"noamkadosh",
-		"javascript"
-	],
-	"main": "index.js",
-	"author": "Noam Kadosh",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/noamkadosh/eslint-config-noamkadosh/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/noamkadosh/eslint-config-noamkadosh"
-	},
-	"scripts": {
-		"find-new-rules": "concurrently 'pnpm run find-new-rules:*' --group",
-		"find-new-rules:main": "eslint-find-rules --unused --no-error ./index.js",
-		"find-new-rules:browser": "eslint-find-rules --unused --no-error ./test/rules/browser/index.js",
-		"find-new-rules:node": "eslint-find-rules --unused --no-error ./test/rules/node/index.js",
-		"find-new-rules:react": "eslint-find-rules --unused --no-error ./test/rules/react/index.js",
-		"find-new-rules:jsx": "eslint-find-rules --unused --no-error ./test/rules/jsx/index.js",
-		"find-new-rules:testing": "eslint-find-rules --unused --no-error ./test/rules/testing/index.js",
-		"find-deprecated-rules": "concurrently 'pnpm run find-deprecated-rules:*' --group",
-		"find-deprecated-rules:main": "eslint-find-rules --deprecated ./index.js",
-		"find-deprecated-rules:browser": "eslint-find-rules --deprecated ./test/rules/browser/index.js",
-		"find-deprecated-rules:node": "eslint-find-rules --deprecated ./test/rules/node/index.js",
-		"find-deprecated-rules:react": "eslint-find-rules --deprecated ./test/rules/react/index.js",
-		"find-deprecated-rules:jsx": "eslint-find-rules --deprecated ./test/rules/jsx/index.js",
-		"find-deprecated-rules:testing": "eslint-find-rules --deprecated ./test/rules/testing/index.js",
-		"find-current-rules": "concurrently 'pnpm run find-current-rules:*' --group",
-		"find-current-rules:main": "eslint-find-rules --current ./index.js",
-		"find-current-rules:browser": "eslint-find-rules --current ./test/rules/browser/index.js",
-		"find-current-rules:node": "eslint-find-rules --current ./test/rules/node/index.js",
-		"find-current-rules:react": "eslint-find-rules --current ./test/rules/react/index.js",
-		"find-current-rules:jsx": "eslint-find-rules --current ./test/rules/jsx/index.js",
-		"find-current-rules:testing": "eslint-find-rules --current ./test/rules/testing/index.js",
-		"lint": "eslint --config index.js .",
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"dependencies": {
-		"@html-eslint/eslint-plugin": "^0.13.2",
-		"@html-eslint/parser": "^0.13.2",
-		"@rushstack/eslint-config": "^2.6.2",
-		"@typescript-eslint/eslint-plugin": "^5.30.7",
-		"@typescript-eslint/parser": "^5.30.7",
-		"browserslist-config-noamkadosh": "^1.0.0",
-		"eslint-config-prettier": "^8.5.0",
-		"eslint-import-resolver-typescript": "^3.3.0",
-		"eslint-plugin-array-func": "^3.1.7",
-		"eslint-plugin-compat": "^4.0.2",
-		"eslint-plugin-cypress": "^2.12.1",
-		"eslint-plugin-eslint-comments": "^3.2.0",
-		"eslint-plugin-github": "^4.3.7",
-		"eslint-plugin-html": "^7.0.0",
-		"eslint-plugin-import": "^2.26.0",
-		"eslint-plugin-jest": "^26.6.0",
-		"eslint-plugin-jest-async": "^1.0.3",
-		"eslint-plugin-jest-dom": "^4.0.2",
-		"eslint-plugin-jest-formatting": "^3.1.0",
-		"eslint-plugin-jsdoc": "^39.3.3",
-		"eslint-plugin-json": "^3.1.0",
-		"eslint-plugin-jsonc": "^2.3.1",
-		"eslint-plugin-jsx-a11y": "^6.6.1",
-		"eslint-plugin-markdown": "^3.0.0",
-		"eslint-plugin-no-constructor-bind": "^2.0.4",
-		"eslint-plugin-no-secrets": "^0.8.9",
-		"eslint-plugin-no-unsanitized": "^4.0.1",
-		"eslint-plugin-no-use-extend-native": "^0.5.0",
-		"eslint-plugin-node": "^11.1.0",
-		"eslint-plugin-optimize-regex": "^1.2.1",
-		"eslint-plugin-perf-standard": "^1.0.3",
-		"eslint-plugin-prettier": "^4.2.1",
-		"eslint-plugin-promise": "^6.0.0",
-		"eslint-plugin-react": "^7.30.1",
-		"eslint-plugin-react-hooks": "^4.6.0",
-		"eslint-plugin-react-redux": "^4.0.0",
-		"eslint-plugin-security": "^1.5.0",
-		"eslint-plugin-sonarjs": "^0.14.0",
-		"eslint-plugin-sort-keys-fix": "^1.1.2",
-		"eslint-plugin-sql": "^2.1.0",
-		"eslint-plugin-switch-case": "^1.1.2",
-		"eslint-plugin-tailwindcss": "^3.6.0",
-		"eslint-plugin-testing-library": "^5.5.1",
-		"eslint-plugin-toml": "^0.3.1",
-		"eslint-plugin-unicorn": "^43.0.2",
-		"eslint-plugin-yml": "^1.0.0",
-		"read-pkg-up": "^7.0.1"
-	},
-	"devDependencies": {
-		"concurrently": "^7.3.0",
-		"eslint": "^8.20.0",
-		"eslint-find-rules": "^4.1.0",
-		"prettier": "^2.7.1",
-		"typescript": "^4.7.4"
-	},
-	"peerDependencies": {
-		"eslint": "^8.0.0",
-		"prettier": "^2.7.0",
-		"typescript": "^4.0.0"
-	},
-	"peerDependenciesMeta": {
-		"typescript": {
-			"optional": true
-		}
-	},
-	"eslintConfig": {
-		"extends": "./index.js",
-		"rules": {
-			"import/no-commonjs": "off"
-		}
-	},
-	"eslintIgnore": [
-		"node_modules",
-		"dist"
-	],
-	"prettier": {
-		"semi": false,
-		"trailingComma": "none",
-		"singleQuote": true,
-		"jsxSingleQuote": true,
-		"printWidth": 100,
-		"tabWidth": 2,
-		"useTabs": true,
-		"arrowParens": "avoid"
-	},
-	"engines": {
-		"node": "^16.2.0",
-		"npm": ">=7",
-		"yarn": ">=1",
-		"pnpm": ">=6"
-	},
-	"browserslist": [
-		"extends browserslist-config-noamkadosh"
-	]
+    "name": "eslint-config-noamkadosh",
+    "version": "1.1.5",
+    "description": "ESLint rules according to noamkadosh' personal preference",
+    "type": "commonjs",
+    "keywords": [
+        "eslint",
+        "eslintconfig",
+        "config",
+        "noamkadosh",
+        "javascript"
+    ],
+    "main": "index.js",
+    "author": "Noam Kadosh",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/noamkadosh/eslint-config-noamkadosh/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/noamkadosh/eslint-config-noamkadosh"
+    },
+    "scripts": {
+        "find-new-rules": "concurrently 'pnpm run find-new-rules:*' --group",
+        "find-new-rules:main": "eslint-find-rules --unused --no-error ./index.js",
+        "find-new-rules:browser": "eslint-find-rules --unused --no-error ./test/rules/browser/index.js",
+        "find-new-rules:node": "eslint-find-rules --unused --no-error ./test/rules/node/index.js",
+        "find-new-rules:react": "eslint-find-rules --unused --no-error ./test/rules/react/index.js",
+        "find-new-rules:jsx": "eslint-find-rules --unused --no-error ./test/rules/jsx/index.js",
+        "find-new-rules:testing": "eslint-find-rules --unused --no-error ./test/rules/testing/index.js",
+        "find-deprecated-rules": "concurrently 'pnpm run find-deprecated-rules:*' --group",
+        "find-deprecated-rules:main": "eslint-find-rules --deprecated ./index.js",
+        "find-deprecated-rules:browser": "eslint-find-rules --deprecated ./test/rules/browser/index.js",
+        "find-deprecated-rules:node": "eslint-find-rules --deprecated ./test/rules/node/index.js",
+        "find-deprecated-rules:react": "eslint-find-rules --deprecated ./test/rules/react/index.js",
+        "find-deprecated-rules:jsx": "eslint-find-rules --deprecated ./test/rules/jsx/index.js",
+        "find-deprecated-rules:testing": "eslint-find-rules --deprecated ./test/rules/testing/index.js",
+        "find-current-rules": "concurrently 'pnpm run find-current-rules:*' --group",
+        "find-current-rules:main": "eslint-find-rules --current ./index.js",
+        "find-current-rules:browser": "eslint-find-rules --current ./test/rules/browser/index.js",
+        "find-current-rules:node": "eslint-find-rules --current ./test/rules/node/index.js",
+        "find-current-rules:react": "eslint-find-rules --current ./test/rules/react/index.js",
+        "find-current-rules:jsx": "eslint-find-rules --current ./test/rules/jsx/index.js",
+        "find-current-rules:testing": "eslint-find-rules --current ./test/rules/testing/index.js",
+        "lint": "eslint --config index.js .",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "@html-eslint/eslint-plugin": "^0.13.2",
+        "@html-eslint/parser": "^0.13.2",
+        "@rushstack/eslint-config": "^2.6.2",
+        "@typescript-eslint/eslint-plugin": "^5.30.7",
+        "@typescript-eslint/parser": "^5.30.7",
+        "browserslist-config-noamkadosh": "^1.0.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-import-resolver-typescript": "^3.3.0",
+        "eslint-plugin-array-func": "^3.1.7",
+        "eslint-plugin-compat": "^4.0.2",
+        "eslint-plugin-cypress": "^2.12.1",
+        "eslint-plugin-eslint-comments": "^3.2.0",
+        "eslint-plugin-github": "^4.3.7",
+        "eslint-plugin-html": "^7.0.0",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-jest": "^26.6.0",
+        "eslint-plugin-jest-async": "^1.0.3",
+        "eslint-plugin-jest-dom": "^4.0.2",
+        "eslint-plugin-jest-formatting": "^3.1.0",
+        "eslint-plugin-jsdoc": "^39.3.3",
+        "eslint-plugin-json": "^3.1.0",
+        "eslint-plugin-jsonc": "^2.3.1",
+        "eslint-plugin-jsx-a11y": "^6.6.1",
+        "eslint-plugin-markdown": "^3.0.0",
+        "eslint-plugin-no-constructor-bind": "^2.0.4",
+        "eslint-plugin-no-secrets": "^0.8.9",
+        "eslint-plugin-no-unsanitized": "^4.0.1",
+        "eslint-plugin-no-use-extend-native": "^0.5.0",
+        "eslint-plugin-node": "^11.1.0",
+        "eslint-plugin-optimize-regex": "^1.2.1",
+        "eslint-plugin-perf-standard": "^1.0.3",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-promise": "^6.0.0",
+        "eslint-plugin-react": "^7.30.1",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "eslint-plugin-react-redux": "^4.0.0",
+        "eslint-plugin-security": "^1.5.0",
+        "eslint-plugin-sonarjs": "^0.14.0",
+        "eslint-plugin-sort-keys-fix": "^1.1.2",
+        "eslint-plugin-sql": "^2.1.0",
+        "eslint-plugin-switch-case": "^1.1.2",
+        "eslint-plugin-tailwindcss": "^3.6.0",
+        "eslint-plugin-testing-library": "^5.5.1",
+        "eslint-plugin-toml": "^0.3.1",
+        "eslint-plugin-unicorn": "^43.0.2",
+        "eslint-plugin-yml": "^1.0.0",
+        "read-pkg-up": "^7.0.1"
+    },
+    "devDependencies": {
+        "concurrently": "^7.3.0",
+        "eslint": "^8.20.0",
+        "eslint-find-rules": "^4.1.0",
+        "prettier": "^2.7.1",
+        "typescript": "^4.7.4"
+    },
+    "peerDependencies": {
+        "eslint": "^8.0.0",
+        "prettier": "^2.7.0",
+        "typescript": "^4.0.0"
+    },
+    "peerDependenciesMeta": {
+        "typescript": {
+            "optional": true
+        }
+    },
+    "eslintConfig": {
+        "extends": "./index.js",
+        "rules": {
+            "import/no-commonjs": "off"
+        }
+    },
+    "eslintIgnore": [
+        "node_modules",
+        "dist"
+    ],
+    "prettier": {
+        "semi": false,
+        "trailingComma": "all",
+        "printWidth": 80,
+        "tabWidth": 4,
+        "arrowParens": "avoid"
+    },
+    "engines": {
+        "node": "^16.2.0",
+        "npm": ">=7",
+        "yarn": ">=1",
+        "pnpm": ">=6"
+    },
+    "browserslist": [
+        "extends browserslist-config-noamkadosh"
+    ]
 }
